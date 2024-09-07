@@ -1,0 +1,37 @@
+﻿<h1>Calculadora</h1>
+
+<!-- Inputs para ingresar los números -->
+<input @bind="num1" type="number" placeholder="Número 1" />
+<input @bind="num2" type="number" placeholder="Número 2" />
+
+<!-- Botones para las operaciones -->
+<button @onclick="Sumar">Sumar</button>
+<button @onclick="Restar">Restar</button>
+<button @onclick="Multiplicar">Multiplicar</button>
+<button @onclick="Dividir">Dividir</button>
+
+<!-- Resultado de la operación -->
+<p>Resultado: @resultado</p>
+
+@code {
+    // Declaración de variables para los números y el resultado
+    private double num1, num2, resultado;
+
+    // Métodos para las operaciones matemáticas
+    private void Sumar() => resultado = num1 + num2;
+    private void Restar() => resultado = num1 - num2;
+    private void Multiplicar() => resultado = num1 * num2;
+
+    // Validación de la división para evitar división por cero
+    private void Dividir()
+    {
+        if (num2 != 0)
+        {
+            resultado = num1 / num2;
+        }
+        else
+        {
+            resultado = double.NaN; // NaN (Not a Number) para indicar un error
+        }
+    }
+}
